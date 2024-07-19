@@ -1,4 +1,4 @@
-# ft_linear-regression
+# How to do a linear regression
 
 ## Supervised Learning:
 
