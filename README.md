@@ -1,4 +1,4 @@
-# Linear-regression
+# ft_linear-regression
 
 ## Supervised Learning:
 
