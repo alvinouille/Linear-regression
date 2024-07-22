@@ -19,7 +19,8 @@ def predict_(thetas, norm_params) -> None:
     linear_model = MyLR(thetas=thetas)
     X = np.array([[get_valid_mileage()]])
 
-    X = normalisation(X, norm_params)
+    if norm_params is not None:
+        X = normalisation(X, norm_params)
 
     y_hat = linear_model.predict_(X)
     print(f"Estimated price in fonction of this mileage : {y_hat[0, 0]}")
@@ -29,13 +30,13 @@ def main():
     try:
         thetas = pd.read_csv('thetas.csv').to_numpy()
     except Exception as e:
-        print(e)
         thetas = np.array([[0.], [0.]])
+        print(f"Be careful, thetas initialized to [[0.], [0.]] because : {e}")
     try:
         norm_params = np.load('norm_params.npy')
     except Exception as e:
-        print(e)
-        exit()
+        print(f"Be careful, data has not been normalized because {e}")
+        norm_params = None
     predict_(thetas, norm_params)
 
 if __name__=='__main__':

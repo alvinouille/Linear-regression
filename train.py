@@ -16,8 +16,8 @@ def plot_lr(x: np.ndarray, y: np.ndarray, y_hat: np.ndarray,  xlabel: str,
     plt.plot(x, y, "o", color=colors[0], label="Sell price")
     plt.plot(x, y_hat, "o", color=colors[1], label="Predicted sell price")
 
-    mse = f"{lr_model.rmse_(y, y_hat):.3f}"
-    plt.title(f"MSE: {mse}")
+    rmse = f"{lr_model.rmse_(y, y_hat):.3f}"
+    plt.title(f"RMSE: {rmse}")
     plt.legend()
 
     plt.show()
@@ -33,12 +33,12 @@ def train_lr(df: pd.DataFrame, feature: str, y_label: str, alpha: float = 0.001,
     
     linear_model = MyLR(thetas=np.array([[0.], [0.]]), alpha=alpha, max_iter=max_iter)
 
-    print(f"MSE before -> {linear_model.rmse_(Y, linear_model.predict_(X))}")
+    print(f"RMSE before -> {linear_model.rmse_(Y, linear_model.predict_(X))}")
 
     linear_model.fit_(X, Y)
     y_hat = linear_model.predict_(X)
 
-    print(f"MSE after -> {linear_model.rmse_(Y, y_hat)}")
+    print(f"RMSE after -> {linear_model.rmse_(Y, y_hat)}")
     plot_lr(X, Y, y_hat, feature.lower(), colors=("darkblue", "dodgerblue"), lr_model=linear_model)
 
     theta_df = pd.DataFrame(linear_model.thetas, columns=['thetas'])

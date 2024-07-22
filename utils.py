@@ -1,6 +1,4 @@
 import numpy as np
-MEAN_X = 0
-STD_X = 1
 
 def mean(liste) -> float:
     return float(np.sum(liste) / liste.size)
